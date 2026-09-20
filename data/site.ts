@@ -11,10 +11,9 @@ export const site = {
   yearRoman: "MMXXVI",
   motto: ["Disciplina", "Omnia Vincit"],
   contact: {
-    email: "hossam@dwidarjr.space",
+    email: "dwidarjr@gmail.com",
     linkedin: "https://www.linkedin.com/in/dwidarjr/",
     github: "https://github.com/Dwidarjr",
-    website: "https://dwidarjr.space/",
   },
 } as const;
 

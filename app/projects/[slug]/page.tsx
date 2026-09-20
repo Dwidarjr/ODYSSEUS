@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { MotionController } from "@/components/motion/MotionController";
+import { ScrollToTop } from "@/components/motion/ScrollToTop";
 import { Navigation } from "@/components/Navigation";
 import { CaseStudy } from "@/components/case-study/CaseStudy";
 import { KIND_LABEL } from "@/components/ProjectItem";
@@ -40,6 +41,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
 
   return (
     <>
+      <ScrollToTop />
       <Navigation />
       <main id="main">
         <article>

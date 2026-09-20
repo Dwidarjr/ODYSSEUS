@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { site } from "@/data/site";
-import { GitHubIcon, GlobeIcon, LinkedInIcon, MailIcon } from "./ui/Icons";
+import { GitHubIcon, LinkedInIcon, MailIcon } from "./ui/Icons";
 import { SectionMark } from "./ui/SectionMark";
 
 const display = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
@@ -9,7 +9,6 @@ const links = [
   { label: site.contact.email, href: `mailto:${site.contact.email}`, Icon: MailIcon, external: false },
   { label: display(site.contact.linkedin), href: site.contact.linkedin, Icon: LinkedInIcon, external: true },
   { label: display(site.contact.github), href: site.contact.github, Icon: GitHubIcon, external: true },
-  { label: display(site.contact.website), href: site.contact.website, Icon: GlobeIcon, external: true },
 ];
 
 /** VI — THE NEXT HORIZON. Calm, spacious; Alexandria's lighthouse on the horizon. */
