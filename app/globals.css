@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   THE ODYSSEY — design tokens
+   ========================================================================== */
+
+@theme {
+  --color-ink: #12110f;
+  --color-ink-2: #181613;
+  --color-ink-3: #201d19;
+  --color-ivory: #e9e4d7;
+  --color-paper: #ded7c9;
+  --color-stone: #a69d8e;
+  --color-stone-deep: #6f675b;
+  --color-umber: #262019;
+  --color-terracotta: #8c4b31;
+  --color-terracotta-soft: #a0634a;
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  --breakpoint-xs: 22.5rem; /* 360 */
+}
+
+:root {
+  --gutter: clamp(1.25rem, 5.6vw, 5.5rem);
+  --rule-dark: rgb(233 228 215 / 0.16);
+  --rule-light: rgb(18 17 15 / 0.16);
+  --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
+  --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --mottle: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23m)'/></svg>");
+}
+
+html {
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-ink);
+  overflow-x: clip;
+  font-variant-numeric: lining-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-terracotta);
+  color: var(--color-ivory);
+}
+
+:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Typography primitives
+   ========================================================================== */
+
+@utility font-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.98;
+  font-feature-settings: "lnum" 1, "kern" 1;
+}
+
+/* Tiny uppercase metadata — the "museum caption" voice. */
+@utility meta {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  line-height: 1.9;
+  text-transform: uppercase;
+}
+
+@utility meta-lg {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  line-height: 2;
+  text-transform: uppercase;
+}
+
+@utility serif-caps {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* ==========================================================================
+   Surfaces & texture
+   ========================================================================== */
+
+/* Dark, photographed surface: film grain + soft vignette. */
+@utility surface-film {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--color-ink);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    background-image: var(--noise);
+    background-size: 240px;
+    opacity: 0.09;
+    mix-blend-mode: overlay;
+  }
+}
+
+/* Aged paper: faint mottling, fine fibre noise, warm edges. */
+@utility surface-paper {
+  position: relative;
+  isolation: isolate;
+  color: var(--color-ink);
+  background-color: var(--color-ivory);
+  background-image:
+    radial-gradient(120% 90% at 50% 40%, transparent 55%, rgb(120 96 64 / 0.1) 100%),
+    var(--mottle);
+  background-size: auto, 700px;
+  background-blend-mode: normal, soft-light;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    background-image: var(--noise);
+    background-size: 240px;
+    opacity: 0.14;
+    mix-blend-mode: multiply;
+  }
+}
+
+.vignette {
+  background: radial-gradient(ellipse at 58% 45%, transparent 35%, rgb(8 7 6 / 0.55) 100%);
+}
+
+/* ==========================================================================
+   Hero stage — keeps plate, disc and statue locked to one coordinate system
+   while the whole composition "covers" the viewport.
+   ========================================================================== */
+
+.hero-stage {
+  /* Mobile: statue box width × 1.42 crops the pedestal's lowest step. */
+  height: calc(64px + min(108vw, 600px) * 1.42);
+}
+
+@media (min-width: 64rem) {
+  .hero-frame {
+    container-type: size;
+  }
+
+  .hero-stage {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+
+  /* Backdrop (1926×816): bottom-anchored and slightly wider than the screen so
+     the column sits near the right edge, clear of the statue. */
+  .hero-plate {
+    inset: auto auto 0 0;
+    width: 118cqw;
+    aspect-ratio: 1926 / 816;
+  }
+
+  /* Statue: 92% of the viewport height, centred at 64% of the width. */
+  .hero-frame /* Keeps the marble monogram legible on the ivory spreads as well as the dark ones. */
+.logo-mark {
+  filter: drop-shadow(0 1px 1.5px rgb(18 17 15 / 0.45));
+}
+
+.statue-box {
+    top: 10cqh;
+    left: calc(64cqw - 30.67cqh);
+    width: 61.33cqh;
+  }
+}
+
+.hero-plate-mask {
+  mask-image: linear-gradient(to right, transparent 0%, #000 9%, #000 100%);
+}
+
+.statue-box {
+  container-type: inline-size;
+}
+
+.pedestal-inscription {
+  color: rgb(46 37 29 / 0.82);
+  text-shadow: 0 1px 0 rgb(255 250 240 / 0.18);
+  mix-blend-mode: multiply;
+}
+
+/* ==========================================================================
+   Motion — initial states only apply once JS has confirmed motion is allowed.
+   ========================================================================== */
+
+.motion [data-intro],
+.motion [data-reveal] {
+  opacity: 0;
+}
+
+.motion [data-split] {
+  visibility: hidden;
+}
+
+.scroll-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--color-ivory);
+  animation: scroll-drip 2.8s var(--ease-cinema) infinite;
+}
+
+@keyframes scroll-drip {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(260%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-line::after {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Underline that draws in on hover. */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.6s var(--ease-cinema);
+}
+
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1px;
+}
+
+.arrow-nudge {
+  display: inline-block;
+  transition: transform 0.6s var(--ease-cinema);
+}
+
+a:hover .arrow-nudge,
+a:focus-visible .arrow-nudge {
+  transform: translateX(6px);
+}
