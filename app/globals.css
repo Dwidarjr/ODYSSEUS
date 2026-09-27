@@ -208,6 +208,47 @@ body {
 }
 
 /* ==========================================================================
+   IV — The Labors: project plates rest under a warm, muted veil and return to
+   full colour on hover. Only the plates inside the work list carry this class.
+   ========================================================================== */
+
+@media (hover: hover) {
+  .project-plate img {
+    filter: saturate(0.62) sepia(0.12) contrast(0.97);
+    /* `scale` is listed because the zoom utility animates the scale property. */
+    transition:
+      filter 0.6s var(--ease-cinema),
+      scale 0.6s var(--ease-cinema),
+      transform 0.6s var(--ease-cinema);
+  }
+
+  .project-plate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: rgb(38 32 25 / 0.2);
+    transition: opacity 0.6s var(--ease-cinema);
+  }
+
+  .group:hover .project-plate img {
+    filter: none;
+  }
+
+  .group:hover .project-plate::after {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-plate img,
+  .project-plate::after {
+    transition-duration: 1ms;
+  }
+}
+
+/* ==========================================================================
    Motion — initial states only apply once JS has confirmed motion is allowed.
    ========================================================================== */
 

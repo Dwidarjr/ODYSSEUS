@@ -62,7 +62,7 @@ export function ProjectItem({ project }: { project: Project }) {
         <ProjectMedia
           project={project}
           sizes="(min-width: 1024px) 55vw, 100vw"
-          className="aspect-[16/10] w-full sm:aspect-[2.2/1] lg:aspect-[3.7/1]"
+          className="project-plate aspect-[16/10] w-full sm:aspect-[2.2/1] lg:aspect-[3.7/1]"
         />
       </Link>
     </article>
