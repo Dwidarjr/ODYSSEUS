@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     title: site.title,
     description: site.description,
     locale: "en_US",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Hossam Dwidar — a marble statue before a terracotta sun among ancient ruins" }],
+    images: [{ url: "/og-hero.jpg", width: 1200, height: 630, alt: "Hossam Dwidar — web developer. The portfolio's opening screen: a marble statue before a terracotta sun among ancient ruins." }],
   },
   twitter: {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
-    images: ["/og.jpg"],
+    images: ["/og-hero.jpg"],
   },
   robots: { index: true, follow: true },
 };

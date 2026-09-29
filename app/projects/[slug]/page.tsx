@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps<"/projects/[slug]">
   if (!project) return {};
   const title = project.seo?.title ?? project.title;
   const description = project.seo?.description ?? project.description;
-  const ogImage = project.seo?.ogImage ?? (project.image?.treatment === "cover" ? project.image.src : "/og.jpg");
+  const ogImage = project.seo?.ogImage ?? (project.image?.treatment === "cover" ? project.image.src : "/og-hero.jpg");
   return {
     title,
     description,

@@ -144,30 +144,9 @@ const terracottaAmount = (r, g, b) => {
   fs.rmSync(path.join(OUT, "hero-me-source.png"), { force: true });
 }
 
-/* ---------- Open Graph card: backdrop + disc + statue ---------- */
-{
-  const bg = sharp(path.join(OUT, "hero-background.jpg"));
-  const { width: BW, height: BH } = await bg.metadata();
-  // 1200×630 crop from the right-hand part of the backdrop, statue centred at 62%.
-  const scale = 630 / BH;
-  const bgW = Math.round(BW * scale);
-  const backdrop = await sharp(path.join(OUT, "hero-background.jpg")).resize(bgW, 630).toBuffer();
-  const left = Math.max(0, Math.min(bgW - 1200, Math.round(bgW * 0.55 - 600)));
-  const base = await sharp(backdrop).extract({ left, top: 0, width: 1200, height: 630 }).toBuffer();
-  const sH = 600, sW = Math.round(sH / 1.5);
-  const sx = Math.round(1200 * 0.62 - sW / 2), sy = 630 - sH;
-  const statue = await sharp(path.join(OUT, "hero-me.png")).resize(sW, sH).png().toBuffer();
-  const discD = Math.round((sW * 2 * DISC.r) / 1024);
-  const disc = await sharp(path.join(OUT, "hero-me-disc.png")).resize(discD, discD).png().toBuffer();
-  await sharp(base)
-    .composite([
-      { input: disc, left: sx + Math.round(((DISC.cx - DISC.r) / 1024) * sW), top: sy + Math.round(((DISC.cy - DISC.r) / 1536) * sH) },
-      { input: statue, left: sx, top: sy },
-    ])
-    .jpeg({ quality: 86, mozjpeg: true })
-    .toFile("public/og.jpg");
-  console.log("og.jpg");
-}
+/* ---------- Open Graph card ----------
+   public/og-hero.jpg is a screenshot of the live hero, added by hand — this
+   pipeline deliberately does not generate or overwrite it. */
 
 /* ---------- Logo: one source → nav mark + favicon + apple icon ---------- */
 {

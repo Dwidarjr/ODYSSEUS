@@ -1,6 +1,6 @@
 export const site = {
   name: "Hossam Dwidar",
-  url: "https://dwidarjr.space",
+  url: "https://dwidarjr.site",
   role: "Web Developer",
   title: "Hossam Dwidar — Web Developer",
   description:
