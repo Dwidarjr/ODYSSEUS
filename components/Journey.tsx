@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { site } from "@/data/site";
 
-/** V — THE JOURNEY. A cinematic plate: the stone gateway opening onto Alexandria. */
+/** VI — THE JOURNEY. A cinematic plate: the stone gateway opening onto Alexandria. */
 export function Journey() {
   return (
     <section
@@ -38,7 +38,7 @@ export function Journey() {
 
       <div className="absolute inset-x-0 bottom-0 z-10 px-[var(--gutter)] pb-[13%] lg:inset-y-0 lg:left-[57%] lg:right-0 lg:flex lg:flex-col lg:justify-center lg:px-0 lg:pb-0 lg:pr-[var(--gutter)]">
         <p className="meta mb-6 text-stone lg:mb-8" data-reveal="fade">
-          V <span aria-hidden="true" className="mx-2 inline-block h-px w-6 translate-y-[-3px] bg-current align-middle" /> The Journey
+          VI <span aria-hidden="true" className="mx-2 inline-block h-px w-6 translate-y-[-3px] bg-current align-middle" /> The Journey
         </p>
         <h2
           id="journey-title"

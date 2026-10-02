@@ -11,7 +11,7 @@ const links = [
   { label: display(site.contact.github), href: site.contact.github, Icon: GitHubIcon, external: true },
 ];
 
-/** VI — THE NEXT HORIZON. Calm, spacious; Alexandria's lighthouse on the horizon. */
+/** VII — THE NEXT HORIZON. Calm, spacious; Alexandria's lighthouse on the horizon. */
 export function Contact() {
   return (
     <section
@@ -31,7 +31,7 @@ export function Contact() {
       </div>
 
       <div className="relative z-10 grid grid-cols-1 px-[var(--gutter)] pb-16 pt-24 lg:grid-cols-12 lg:gap-x-8 lg:pb-[clamp(6rem,9vw,9rem)] lg:pt-[clamp(6.5rem,10vw,10rem)]">
-        <SectionMark numeral="VI" label="Contact" className="lg:col-span-2" />
+        <SectionMark numeral="VII" label="Contact" className="lg:col-span-2" />
 
         <div className="mt-10 lg:col-span-8 lg:mt-0">
           <h2

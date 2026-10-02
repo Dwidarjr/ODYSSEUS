@@ -249,6 +249,68 @@ body {
 }
 
 /* ==========================================================================
+   V — Testimonials: a paper spread pitched one tone deeper than the labors
+   above it, and a rail that scrolls card by card. Unlayered, so the surface
+   colour wins over the `surface-paper` utility it sits on.
+   ========================================================================== */
+
+.surface-paper-deep {
+  background-color: var(--color-paper);
+}
+
+.testimonial-card {
+  background-color: rgb(233 228 215 / 0.62);
+}
+
+/* Arabic names keep their own spacing: tracking and caps belong to latin type. */
+.testimonial-card [lang="ar"] {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* The bust reads as a decorative plate, not a second gallery piece. */
+.testimonial-bust {
+  filter: grayscale(0.5) sepia(0.32) contrast(0.96);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent 97%);
+}
+
+/* Swipeable rail; the scrollbar would cut across the spread. */
+.rail-x {
+  scrollbar-width: none;
+}
+
+.rail-x::-webkit-scrollbar {
+  display: none;
+}
+
+.rail-arrow {
+  display: flex;
+  height: 2.6rem;
+  width: 2.6rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule-light);
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  color: rgb(18 17 15 / 0.75);
+  transition:
+    color 0.6s var(--ease-cinema),
+    border-color 0.6s var(--ease-cinema),
+    background-color 0.6s var(--ease-cinema);
+}
+
+.rail-arrow:hover:not(:disabled) {
+  color: var(--color-ink);
+  border-color: rgb(18 17 15 / 0.4);
+  background-color: rgb(18 17 15 / 0.04);
+}
+
+.rail-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* ==========================================================================
    Motion — initial states only apply once JS has confirmed motion is allowed.
    ========================================================================== */
 

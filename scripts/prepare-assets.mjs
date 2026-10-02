@@ -182,4 +182,13 @@ for (const name of ["tool-code", "tool-design", "tool-business", "tool-numbers"]
   console.log("trimmed", name, m.width, m.height);
 }
 
+/* ---------- V — Testimonials: the laurelled figure, trimmed to its own edges ---------- */
+{
+  const { data, info } = await cleanAlpha(path.join(SRC, "testimonials-figure.webp"));
+  const out = await sharp(data, { raw: info }).trim({ threshold: 1 }).webp({ quality: 92 }).toBuffer();
+  fs.writeFileSync(path.join(OUT, "testimonials-figure.webp"), out);
+  const m = await sharp(out).metadata();
+  console.log("testimonials-figure.webp", m.width, m.height);
+}
+
 console.log("done");

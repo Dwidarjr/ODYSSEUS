@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Journey } from "@/components/Journey";
 import { MotionController } from "@/components/motion/MotionController";
 import { Navigation } from "@/components/Navigation";
+import { Testimonials } from "@/components/Testimonials";
 import { Tools } from "@/components/Tools";
 import { Work } from "@/components/Work";
 import { site } from "@/data/site";
@@ -33,6 +34,7 @@ export default async function Home() {
         <About />
         <Tools />
         <Work projects={projects} />
+        <Testimonials />
         <Journey />
         <Contact />
       </main>
