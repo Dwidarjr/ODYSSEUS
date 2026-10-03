@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { site } from "@/data/site";
+import { DownloadIcon } from "./ui/Icons";
 import { Laurel } from "./ui/Laurel";
 
 /**
@@ -125,6 +126,16 @@ export function Hero() {
             <br />
             <span className="pl-[0.45em]">digital experiences.”</span>
           </blockquote>
+
+          <a
+            href="/Hossam-Dwidar-CV.pdf"
+            download="Hossam-Dwidar-CV.pdf"
+            className="meta mt-8 inline-flex w-fit items-center gap-4 border border-ivory/35 px-7 py-3 text-ivory/85 transition-colors duration-700 ease-[var(--ease-cinema)] hover:border-ivory/60 hover:bg-ivory/5 hover:text-ivory lg:mt-[2.6svh]"
+            data-intro
+          >
+            <DownloadIcon />
+            <span>Download CV</span>
+          </a>
 
           <a
             href="#about"

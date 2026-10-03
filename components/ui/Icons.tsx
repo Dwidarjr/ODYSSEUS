@@ -32,3 +32,21 @@ export function GlobeIcon({ className = "h-3.5 w-3.5" }: IconProps) {
     </svg>
   );
 }
+
+export function DownloadIcon({ className = "h-3.5 w-3.5" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 3v11.5m0 0 4.2-4.2M12 14.5 7.8 10.3" />
+      <path d="M4.5 19.5h15" />
+    </svg>
+  );
+}
